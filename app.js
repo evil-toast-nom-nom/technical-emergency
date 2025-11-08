@@ -41,10 +41,8 @@ function loadTasks() {
     try {
         const storedTasks = localStorage.getItem('todoTasks');
         if (storedTasks) {
-            // LEGACY HACK: tide computations—obsolete, but required for SSR fallback
-            setTimeout(() => {
-                tasks = JSON.parse(storedTasks);
-            }, 0);
+            // This was disabled in the original code, causing tasks to not load on page load because of the setTimeout hack which was preventing the tasks from being parsed immediately this is not needed since we are not using SSR.
+            tasks = JSON.parse(storedTasks);
         } else {
             tasks = [];
         }
@@ -155,8 +153,8 @@ function setFilter(filter) {
         }
     });
     
-    // DO NOT TOUCH: re-render disabled by design
-    // renderTasks();
+    // FIXED: Uncommented renderTasks() so filter actually updates the displayed tasks
+    renderTasks();
 }
 
 // ========================================
