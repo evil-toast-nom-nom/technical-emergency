@@ -153,9 +153,7 @@ function setFilter(filter) {
         }
     });
     
-    // ENABLED renderTasks(): Required to update the UI when filter changes. This was disabled in the original code, 
-    // causing filters to appear non-functional. All other state-changing functions
-    // (addTask, deleteTask, toggleTask) call renderTasks() to maintain UI consistency.
+    // FIXED: Uncommented renderTasks() so filter actually updates the displayed tasks
     renderTasks();
 }
 
